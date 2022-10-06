@@ -7,7 +7,7 @@ public class Modelo{
         
         final int SALARIO_MINIMO = 1000000;
         final int ANIO_ACTUAL = 2022;
-        final int AUXILIO_TRANSPORTE = 120000;
+        final int AUXILIO_TRANSPORTE = 117172;
         final int CANTIDAD_SALARIO = 8250;
 
         // Declaración de variables
@@ -18,7 +18,8 @@ public class Modelo{
         int[] empleados;
         int[] edad;
         int[] antiguedad;
-        double totalaPagar = 0;
+        double totalaPagarSinBeneficio = 0;
+        double totalaPagar;
 
         // Input
         numEmpleados = Integer.parseInt(JOptionPane.showInputDialog("Por favor ingrese el numero total de los empleados de la empresa" ));
@@ -32,14 +33,18 @@ public class Modelo{
         }
 
         for(int i = 0; i<empleados.length; i++){
-            if(empleados[i] < (SALARIO_MINIMO * 2)){
+            if((empleados[i] * CANTIDAD_SALARIO) < (SALARIO_MINIMO * 2)){
                 empleadosBenificiados = empleadosBenificiados + (empleados[i] + AUXILIO_TRANSPORTE);
+            }else{
+                empleadosBenificiados = empleadosBenificiados + 0;
             }
         }
 
         for(int i = 0; i < empleados.length; i++){
-            totalaPagar = totalaPagar + (empleados[i] * CANTIDAD_SALARIO);
+            totalaPagarSinBeneficio = totalaPagarSinBeneficio + (empleados[i] * CANTIDAD_SALARIO);
            }
+
+        totalaPagar = (totalaPagarSinBeneficio + empleadosBenificiados);
 
         // Output
         JOptionPane.showMessageDialog(null, "El total a pagar de la empresa para sus empleados es: "+ totalaPagar);
